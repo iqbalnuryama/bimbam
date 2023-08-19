@@ -1,0 +1,212 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{%static 'css/cssadmin/bootstrap.min.css'%}" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="{%static 'css/cssadmin/dataTables.bootstrap5.min.css'%}" />
+  <link rel="stylesheet" href="{%static 'css/admin.css'%}" />
+  <link rel="icon" href="{%static '/img/loggg.png'%}">
+  <title>BIMBAM-Dashboard</title>
+</head>
+
+<body class="admin">
+  <!-- top navigation bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-admin fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="/admin"><img
+          src="{%static '/img/loggg.png'%}" class="mb-1" style="height: 30px; width:30px;">
+        Administrator</a>
+      <div class="collapse navbar-collapse" id="topNavBar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-person-fill"></i>
+              Administrator
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Logout
+              </a>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- top navigation bar -->
+  <!-- offcanvas -->
+  <div class="offcanvas offcanvas-start sidebar-nav" tabindex="-1" id="sidebar">
+    <div class="offcanvas-body p-0">
+      <nav class="navbar">
+        <ul class="navbar-nav">
+          <li>
+            <a href="/admin" class="nav-link px-3 py-4"><span class="me-2"><i class="bi bi-speedometer"></i></span>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <div class="text-muted small fw-bold text-uppercase px-3 mb-3 data-master">
+              DATA MASTER
+            </div>
+          </li>
+          <li>
+            <a href="/murid" class="nav-link px-3 active" aria-current="page">
+              <span class="me-2"><i class="bi bi-person-fill"></i></span>
+              <span>Kelola Murid</span>
+            </a>
+          </li>
+          <li>
+            <a href="/guru" class="nav-link px-3 ">
+              <span class="me-2"><i class="bi bi-person-fill"></i></span>
+              <span>Kelola Guru</span>
+            </a>
+          </li>
+          <li>
+            <a href="/user" class="nav-link px-3">
+              <span class="me-2"><i class="bi bi-people-fill"></i></span>
+              <span>Kelola Pengguna</span>
+            </a>
+          </li>
+            <li>
+              <a href="/transaksi" class="nav-link px-3">
+                <span class="me-2"><i class="bi bi-wallet-fill"></i></span>
+                <span>Kelola Transaksi</span>
+              </a>
+            </li>
+          <li>
+            <a href="/laporan" class="nav-link px-3">
+              <span class="me-2"><i class="bi bi-book-fill"></i></span>
+              <span>Laporan</span>
+            </a>
+          </li>
+          <li class="my-3">
+            <hr class="dropdown-divider bg-light" />
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- offcanvas -->
+  <main class="mt-5 pt-3">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12  mt-3 mb-3 text-center text-uppercase">
+          <h2>Kelola Murid</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <div class="card">
+            <div class="card-header">
+              <span><i class="bi bi-table me-2"></i></span> Data Tabel Murid
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="text-end">
+                  <a href="/tambah/murid/" type="submit" class="btn btn-success mb-2 text-end"><span
+                      style="margin-left: -10px;"><i class="bi bi-plus-circle"></i></span>Tambah
+                    Murid</a>
+                </div>
+                <table id="example" class="table table-bordered data-table" style="font-size: 11px;"
+                  style="width: 100%">
+                  <thead class="table-dark">
+                    <th>ID</th>
+                    <th>Nama Lengkap</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Tempat Lahir</th>
+                    <th>Anak Ke</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Agama</th>
+                    <th>Alamat</th>
+                    <th>Nama Ayah</th>
+                    <th>Nama Ibu</th>
+                    <th>No Handphone</th>
+                    <th>Aksi</th>
+                  </thead>
+                  <tbody>
+                    {% for murid in murid %}
+                    <tr>
+                      <td>{{murid.id}}</td>
+                      <td>{{murid.nama}}</td>
+                      <td>{{murid.jenis_kelamin}}</td>
+                      <td>{{murid.tempat_lahir}}</td>
+                      <td>{{murid.anak_ke}}</td>
+                      <td>{{murid.tanggal_lahir}}</td>
+                      <td>{{murid.agama}}</td>
+                      <td>{{murid.alamat}}</td>
+                      <td>{{murid.nama_ayah}}</td>
+                      <td>{{murid.nama_ibu}}</td>
+                      <td>{{murid.no_handphone}}</td>
+                      <td><a href="/edit/murid/{{ murid.id }}" class="btn btn-warning mb-2"><i
+                            class="bi bi-pencil-square"></i></a><a href="javascript:void(0);"
+                          onclick="hapus('{{ murid.id }}')" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    function hapus(id) {
+      Swal.fire({
+        title: "Hapus",
+        text: "Apakah Anda yakin ingin menghapus data ini?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Ya",
+        cancelButtonText: "Tidak",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Mengirim permintaan AJAX untuk menghapus data
+          $.ajax({
+            url: "/delete/murid/" + id + "/",
+            method: "POST",
+            data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+            success: function (response) {
+              Swal.fire({
+                title: "Berhasil!",
+                text: "Data Berhasil Dihapus",
+                icon: "success",
+              });
+              location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+              // Menangani kesalahan jika terjadi
+              Swal.fire({
+                title: "Error",
+                text: "Terjadi kesalahan saat menghapus data: " + xhr.status + " " + thrownError,
+                icon: "error",
+              });
+            },
+          });
+        }
+      });
+    }
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+  <script src="{%static 'js/jsadmin/jquery-3.5.1.js'%}"></script>
+  <script src="{%static 'js/jsadmin/jquery.dataTables.min.js'%}"></script>
+  <script src="{%static 'js/jsadmin/dataTables.bootstrap5.min.js'%}"></script>
+  <script src="{%static 'js/jsadmin/script.js'%}"></script>
+</body>
+
+</html>

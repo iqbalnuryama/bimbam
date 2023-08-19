@@ -1,0 +1,209 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Boxicons CSS -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{%static 'css/style.css'%}" type="text/css">
+  <link rel="stylesheet" href="{%static '/css/responsive.css'%}" type="text/css">
+
+  <!-- Icons -->
+  <link rel="icon" href="{%static '/img/loggg.png'%}">
+
+  <!-- Judul -->
+  <title>SI-BIMBAM</title>
+</head>
+
+<body class="daftar">
+  <!-- Navbar Open -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/index"><img src="{%static '/img/loggg.png'%}" alt="brand"
+          style="height: 40px; width:40px;"><span>SI-BIMBAM</span></a>
+      <a href="/login" class="btn btn-primary d-lg-none ms-auto me-4">Masuk</a>
+      <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class='bx bx-menu-alt-right'></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto menu-navbar">
+          <div class="profil">
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="mr-2  text-white-60 small">{{request.user.username}}</span>
+                    <img class="img-profile rounded-circle" src="{% static 'img/teamwork.png'%}" style="width: 20px;">
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
+                    aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item" href="{%url 'biodata'%}"><i
+                          class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Biodata</a></li>
+                  </ul>
+                </li>
+            </div>
+          </div>
+          <a href="{% url 'logout' %}" class="btn btn-primary" style="margin-top: 10px; margin-bottom: 10px;">Keluar</a>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar CLose -->
+  <!-- form -->
+  <div class="container-fluid">
+    <div class="form-body">
+      {% for message in messages %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show mt-3" style="margin-bottom: -40px;">
+        {{message}}
+      </div>
+      {% endfor %}
+      <div class="form-header">
+        <h2 class="form-text1 p-1 text-uppercase  ">PENGETESAN MENGHITUNG {{tingkat}}</h2>
+      </div>
+      <div class="container-lg form-content">
+        {% for pengetesan in pengetesan %}
+        <div class="card">
+          <div class="card-body">
+            <a href="{{pengetesan.url}}">
+              <div class="d-flex justify-content-start">
+                <img src="{%static 'img/svg/bx-link-alt.svg'%}">
+                <h6 class="ml-3" style="margin-left: 10px;">{{pengetesan.judul}}</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="bukti" class="form-label">Bukti</label>
+          <input class="form-control" type="file" name="bukti" id="formFile">
+        </div>
+      
+        <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+      </form>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+  <!-- Form Close -->
+
+
+  <!-- Footer Open -->
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-footer">
+    <!-- Section: Links  -->
+    <section class="p-1 ">
+      <div class="container-fluid text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-3 text-white">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <img src="{%static '/img/loggg.png'%}" style="height: 40px; width:40px">SI-BIMBAM
+            </h6>
+            <p>
+              Here you can use rows and columns to organize your footer content. Lorem ipsum
+              dolor sit amet, consectetur adipisicing elit.
+            </p>
+            <div>
+              <ul>
+                <a href="" class="me-4 text-reset">
+                  <i class='bx bxl-facebook-circle'></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class='bx bxl-twitter'></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class='bx bxl-instagram-alt'></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class='bx bxl-whatsapp'></i>
+                </a>
+              </ul>
+            </div>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4 text-white">
+              Layanan
+            </h6>
+            <p>
+              <a href="{%url 'daftar'%}" class="text-reset">Materi Pembelajaran</a>
+            </p>
+            <p>
+              <a href="{%url 'daftar'%}" class="text-reset">Tingkat Level</a>
+            </p>
+            <p>
+              <a href="{%url 'caradaftar'%}" class="text-reset">Cara Daftar</a>
+            </p>
+            <p>
+              <a href="{%url 'daftar'%}" class="text-reset">Daftar Sekarang</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-md-0 mb-4 text-white">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class='bx bxs-home'></i> Cinangsi, Subang, Jawa Barat</p>
+            <p>
+              <i class='bx bxs-envelope'></i>
+              info@example.com
+            </p>
+            <p><i class='bx bxs-phone'></i>+ 01 234 567 88</p>
+            <p><i class='bx bxs-phone'></i> + 01 234 567 89</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgb(26, 24, 24);">
+      ©SIBimbamCopyright2023
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+  <!-- Footer Close -->
+
+
+  <!-- Javascript Open -->
+  <!-- Boostrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Javascript Internal -->
+  <script src="{%static '/js/main.js'%}"></script>
+
+  <!-- Javascript Close -->
+</body>
+
+</html>

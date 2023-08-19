@@ -1,0 +1,64 @@
+@media (min-width: 1399.38px) {
+  .container {
+    width: 84px;
+  }
+
+  .home .animasi-img .img1 {
+    left: -10rem;
+    top: 20rem;
+    position: absolute;
+  }
+
+  section.berita {
+    padding: 0;
+    margin: 0;
+  }
+
+  body.kontak .peta iframe {
+    width: 400px;
+  }
+
+
+}
+
+@media (min-width: 576px) {
+  .navbar {
+    padding: 12px 0;
+  }
+
+  .nav-link {
+    padding: 0.8rem;
+  }
+
+  body.kontak .hub .teks {
+    font-size: 50px;
+  }
+
+  body.daftar .show-hide {
+    padding-left: 630px;
+  }
+}
+
+@media(min-width:991px) {}
+
+/* hp */
+@media (max-width: 440px) {
+  .navbar .menu-navbar {
+    padding: 10px;
+    text-align: justify;
+    background-color: black;
+    border-radius: 10px;
+  }
+
+  .btn-outline-warning {
+    margin-top: 10px;
+  }
+
+
+
+
+
+
+
+
+}

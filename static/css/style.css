@@ -1,0 +1,467 @@
+/* import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+/* variable */
+:root {
+  /* Color/Bg Color */
+  --color-satu: #f9be12;
+  --color-satu-rgba: rgba(249, 190, 18, 1);
+  --color-dua: #19b23e;
+  --color-dua-rgba: rgba(25, 178, 62, 1);
+  --color-tiga: #fe6d40;
+  --color-tiga-rgba:
+    rgba(254, 109, 64, 1);
+  --color-empat: #eb268f;
+  --color-empat-rgba: rgba(235, 38, 143, 1);
+  --color-lima: #ffffff;
+  --color-lima-rgba: rgba(255, 255, 255, 0.4);
+  --color-enam: #000000;
+
+  /* Font Size */
+  --font-besar: 58px;
+  --font-h1: 45px;
+  --font-normal: 18px;
+  --font-kecil: 16px;
+  --font-kecil-sangat: 14px;
+
+  /* Font Family */
+  --font-first: 'Roboto', sans-serif;
+  --font-second: 'Poppins', sans-serif;
+
+  /* Font Weight */
+  --font--regular: 400;
+  --font-semibold: 600;
+  --font-medium: 500;
+  --font-bold: 700;
+
+  /* admin */
+  --offcanvas-width: 270px;
+  --topNavbarHeight: 56px;
+
+}
+
+/* Animasi */
+@keyframes movebounce {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  50% {
+    -webkit-transform: translateY(1.25rem);
+    transform: translateY(1.25rem);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+.bg-navbar {
+  background-color: var(--color-enam);
+}
+
+/* Navbar */
+.navbar-scroll {
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: var(--color-enam) !important;
+  box-shadow: .5084rem 1.1419rem 2.5rem 0 rgb(0 0 0 / 8%);
+  transition: 0.3s ease-in-out;
+}
+
+.navbar {
+  padding: 12px;
+  transition: all 0.5s ease;
+}
+
+.navbar-brand span {
+  font-size: var(--font-normal);
+  font-weight: var(--font-bold);
+  color: var(--color-lima);
+}
+
+.nav-link {
+  margin-right: 15px;
+  font-weight: var(--font-medium);
+  color: var(--color-lima);
+  display: inline-block;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+  color: var(--color-empat);
+}
+
+
+/* button */
+button i {
+  color: var(--color-lima);
+}
+
+.btn {
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: var(--font-kecil);
+  font-weight: var(--font-medium);
+}
+
+.btn-primary {
+  background-color: var(--color-empat);
+  border: none;
+}
+
+.btn-primary:hover {
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
+  background-color: var(--color-dua);
+}
+
+.btn-daftar {
+  background-color: var(--color-dua);
+  border: none;
+  color: var(--color-lima);
+  text-align: center;
+}
+
+.btn-daftar:hover {
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
+  background-color: var(--color-empat);
+  color: var(--color-lima);
+}
+
+.btn-daftar span {
+  margin-bottom: 100px;
+}
+
+
+/* Home */
+section.home {
+  padding: 5rem 0 6rem;
+  background-color: var(--color-satu);
+}
+
+.text-home-bold {
+  color: var(--color-lima);
+  font-size: var(--font-h1);
+  line-height: 80px;
+}
+
+.text-home-regular {
+  color: var(--color-lima);
+  font-size: var(--font-normal);
+  font-weight: 400;
+  line-height: 27px;
+}
+
+.home .animasi-img {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 22;
+}
+
+.home .animasi-img .img1 {
+  left: 4rem;
+  top: -2rem;
+  position: absolute;
+  -webkit-animation-name: movebounce;
+  animation-name: movebounce;
+  -webkit-animation-delay: 100ms;
+  animation-delay: 100ms;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  width: 90px;
+  height: 90px;
+}
+
+.home .animasi-img .img2 {
+  left: -10rem;
+  top: -3rem;
+  position: absolute;
+  -webkit-animation-name: movebounce;
+  animation-name: movebounce;
+  -webkit-animation-delay: 200ms;
+  animation-delay: 200ms;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-duration: 2.5s;
+  animation-duration: 2.5s;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  width: 90px;
+  height: 90px;
+}
+
+.home .img3 {
+  position: flexbox;
+  left: -20%;
+  top: 30px;
+  height: 100%;
+  width: 100%;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+/* Card */
+.card1 {
+  margin-top: 20px;
+  border-radius: .625rem;
+  background-color: var(--color-empat);
+  box-shadow: .5084rem 1.1419rem 2.5rem 0 rgb(0 0 0 / 8%);
+  padding: 3.75rem 3.125rem 4.6875rem;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+  border: 1;
+}
+
+.card1:hover {
+  -webkit-transform: translateY(-0.625rem);
+  transform: translateY(-0.625rem);
+}
+
+.icon-box {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto 0.5rem;
+}
+
+/* content */
+.conten a {
+  color: var(--color-enam);
+}
+
+/* footer */
+.bg-footer {
+  margin-top: 100px;
+  background-color: var(--color-enam);
+  color: var(--color-lima-rgba);
+}
+
+/* Login */
+body.login {
+  background-color: var(--color-empat);
+}
+
+
+body.login .container {
+  border-radius: 100px;
+}
+
+.bg-login-image {
+  background: url("/static/img/banner2.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.imglog1 {
+  width: 80px;
+  height: 80px;
+}
+
+.form-group {
+  margin-bottom: 1 rem;
+}
+
+form.user .form-control-user {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 1rem 1rem;
+}
+
+/* button */
+form.user .btn-user {
+  font-size: 0.8rem;
+  border-radius: 3rem;
+  padding: 0.5rem 2rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+/* daftar form open */
+body.daftar .bg-daftar {
+  background-color: var(--color-enam);
+}
+
+body.daftar .form-body {
+  padding: 0px 0px 30px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: var(--color-lima);
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+body.daftar .form-body .form-content .text-bio {
+  background-color: #dddbdb;
+  border-radius: 10px;
+
+
+}
+
+
+body.daftar .show-hide {
+  margin-top: -34px;
+  margin-right: 0px;
+  margin-left: 270px;
+}
+
+body.daftar .show-hide i {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+body.daftar .form-header {
+  background-color: var(--color-satu);
+  border-radius: 10px 10px 0 0;
+}
+
+body.daftar .form-header .form-text1 {
+  margin-left: 20px;
+}
+
+.input-group-text {
+  cursor: pointer;
+}
+
+.logindisini {
+  color: var(--color-empat);
+  margin-top: 20px;
+}
+
+.logindisini:hover {
+  color: var(--color-satu);
+}
+
+/* daftar form close */
+
+/* Cabang */
+/* soklat */
+.nav-back {
+  background-color: var(--color-enam);
+  color: var(--color-empat);
+  padding: 10px;
+}
+
+/* soklat close*/
+/* Cabang Close */
+
+/* Biaya */
+body.biaya .biaya {
+  background-color: var(--color-satu-rgba);
+  padding: 0px 0px 50px;
+  border-radius: 15px;
+}
+
+body.biaya .biaya h1 {
+  padding-top: 10px;
+}
+
+body.biaya .biaya h2 {
+  padding-top: 20px;
+}
+
+
+body.biaya .biaya .text-1 {
+  padding-left: 30px;
+}
+
+
+/* Biaya close */
+
+/* cara daftar */
+
+/* cara daftar close */
+
+/* materi */
+/* materi close */
+
+/* tingkat */
+body.tingkat .elipse {
+  background-color: var(--color-empat);
+  margin-top: 1rem;
+  border-radius: 100rem;
+  padding: 2rem 5rem 1rem;
+}
+
+body.tingkat .icon-elipse img {
+  margin-top: 20px;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+/* tingkat close*/
+
+/* tentang */
+
+
+/* tentang close */
+
+/* berita */
+/* body.berita .body {
+  padding: 0px;
+} */
+
+/* berita close */
+
+/* ds */
+body.ds .box-daftar {
+  padding-top: 50px;
+  margin-top: 50px;
+}
+
+body.ds h2 {
+  margin-top: 50px;
+}
+
+/* ds close */
+
+/* kontak */
+body.kontak .hub {
+  background-color: #ebe9e9dc;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+body.kontak .hub .teks {
+  font-size: 30px;
+
+}
+
+body.kontak .hub .peta {
+  width: 100%;
+
+}
+
+
+body.kontak .con {
+  background-color: #ebe9e9dc;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+/* kontak close */

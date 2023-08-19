@@ -1,0 +1,288 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Boxicons CSS -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{%static 'css/style.css'%}" type="text/css">
+  <link rel="stylesheet" href="{%static '/css/responsive.css'%}" type="text/css">
+
+  <!-- Icons -->
+  <link rel="icon" href="{%static '/img/loggg.png'%}">
+
+  <!-- Judul -->
+  <title>SI-BIMBAM</title>
+</head>
+
+<body class="daftar">
+  <!-- Navbar Open -->
+<nav class="navbar navbar-expand-lg sticky-top bg-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="{%url 'beranda'%}"><img src="{%static 'img/loggg.png'%}" alt="brand"
+        style="height: 40px; width:40px;"><span>SI-BIMBAM</span></a>
+    <!-- <a href="{% url 'logout' %}" class="btn btn-primary d-lg-none ms-auto me-4">Keluar</a> -->
+    <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <i class='bx bx-menu-alt-right'></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto menu-navbar">
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'beranda'%}">Beranda</a>
+        </li>
+        <li><a class="nav-link d-lg-none active" aria-current="page" href="{%url 'biodata'%}"><i
+              class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+            Biodata</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Pembelajaran
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="{%url 'materimurid'%}">Materi Pembelajaran</a>
+            </li>
+            <li><a class="dropdown-item" href="{%url 'levelmurid'%}">Level Tingkat</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="{%url 'tentangmurid'%}" class="nav-link">Tentang</a>
+        </li>
+        <li class="nav-item">
+          <a href="{%url 'beritamurid'%}" class="nav-link">Berita</a>
+        </li>
+        <li class="nav-item">
+          <a href="kegiatanmurid" class="nav-link">Kegiatan</a>
+        </li>
+        <li class="nav-item">
+          <a href="{%url 'kontakmurid'%}" class="nav-link">Kontak</a>
+        </li>
+        <div class="profil">
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="mr-2  text-white-60 small">{{request.user.username}}</span>
+                  <img class="img-profile rounded-circle" src="{% static 'img/teamwork.png'%}" style="width: 20px;">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
+                  aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{%url 'biodata'%}"><i
+                        class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                      Biodata</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a href="{% url 'logout' %}" class="btn btn-primary" style="margin-top: 10px; margin-bottom: 10px;">Keluar</a>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <!-- Navbar CLose -->
+  <!-- form -->
+  <div class="container-fluid">
+    <div class="form-body">
+      <div class="form-header mt-3">
+        <h1 class="form-text1">FORM</h1>
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+          {{message}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="container-lg form-content">
+        <h2 class="text-uppercase mb-3 mt-3 mb-lg-5 text-center text-bio">Biodata Diri</h2>
+        <form action="{% url 'biodata' %}" method="post">
+          {% csrf_token %}
+          <div class="mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">Nama</label>
+            <div class="col-sm-10">
+              <input type="name" class="form-control" name="nama" id="exampleFormControlInput1" value="{{murid.nama}}" >
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+            <div class="col-sm-10">
+              <select class="form-select" aria-label="Default select example" name="jk">
+                <option value="Laki-Laki" {% if murid.jenis_kelamin == 'Laki-Laki' %}selected{% endif %}>Laki-Laki</option>
+                <option value="Perempuan" {% if murid.jenis_kelamin == 'Perempuan' %}selected{% endif %}>Perempuan</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">Anak Ke-</label>
+            <div class="col-sm-1">
+              <select class="form-select" aria-label="Default select example" name="ak" value="{{murid.anak_ke}}">
+                  <option value="1" {% if murid.anak_ke == '1' %}selected{% endif %}>1</option>
+                  <option value="2" {% if murid.anak_ke == '2' %}selected{% endif %}>2</option>
+                  <option value="3" {% if murid.anak_ke == '3' %}selected{% endif %}>3</option>
+                  <option value="4" {% if murid.anak_ke == '4' %}selected{% endif %}>4</option>
+                  <option value="5" {% if murid.anak_ke == '5' %}selected{% endif %}>5</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">Tempat Lahir</label>
+            <div class="col-sm-10">
+              <input type="name" class="form-control" id="exampleFormControlInput1" value="{{murid.tempat_lahir}}" name="teml">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+            <div class="col-sm-10">
+              <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ request.POST.tl }}" name="tl">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">Agama</label>
+            <div class="col-sm-10">
+              <input type="name" class="form-control" id="exampleFormControlInput1" value="{{murid.agama}}" name="agama">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">Alamat</label>
+            <div class="col-sm-10">
+              <input type="name" class="form-control" id="exampleFormControlInput1" value="{{murid.alamat}}" name="alamat">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">Nama Ayah</label>
+            <div class="col-sm-10">
+              <input type="name" class="form-control" id="exampleFormControlInput1" value="{{murid.nama_ayah}}" name="na">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">Nama Ibu</label>
+            <div class="col-sm-10">
+              <input type="name" class="form-control" id="exampleFormControlInput1" value="{{murid.nama_ibu}}" name="ni">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticName" class="col-sm-2 col-form-label">No Handphone</label>
+            <div class="col-sm-10">
+              <input type="name" class="form-control" id="exampleFormControlInput1" value="{{murid.no_handphone}}" name="no">
+            </div>
+          </div>
+          <div class="button-submit-daftar">
+            <button type="submit" class="btn btn-primary">{{button_text}}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-footer">
+    <!-- Section: Links  -->
+    <section class="p-1 ">
+      <div class="container-fluid text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-3 text-white">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <img src="{%static 'img/loggg.png'%}" style="height: 40px; width:40px">SI-BIMBAM
+            </h6>
+            <p>
+              BIMBAM Smart adalah sebuah bimbingan belajar yang bergerak di bidang pendidikan anak usia dini. Jam kerja
+              Senin-Jumat
+              (08.00-16.00) Sabtu (08.00-12.00). Tersebar di berbagai wilayah mulai dari Purwakarta, Subang, Karawang,
+              Bandung,
+              Bekasi dan Jakarta.
+            </p>
+            <div>
+              <ul>
+                <a href="https://www.facebook.com/bimbamsmart97/?locale=id_ID" class="me-4 text-reset">
+                  <i class='bx bxl-facebook-circle'></i>
+                </a>
+                <a href="https://www.instagram.com/officialbimbamsmart/" class="me-4 text-reset">
+                  <i class='bx bxl-instagram-alt'></i>
+                </a>
+                <a href="https://api.whatsapp.com/send/?phone=62895324329226&text&type=phone_number&app_absent=0"
+                  class="me-4 text-reset">
+                  <i class='bx bxl-whatsapp'></i>
+                </a>
+              </ul>
+            </div>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4 text-white">
+              Layanan
+            </h6>
+            <p>
+              <a href="{%url 'materimurid'%}" class="text-reset">Materi Pembelajaran</a>
+            </p>
+            <p>
+              <a href="{%url 'levelmurid'%}" class="text-reset">Tingkat Level</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-white">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class='bx bxs-home'></i> Cinangsi, Subang, Jawa Barat</p>
+            <p>
+              <i class='bx bxs-envelope'></i>
+              bimbamsmart97@gmail.com
+            </p>
+            <p><i class='bx bxs-phone'></i>+6285722552104</p>
+            <p><i class='bx bxs-phone'></i>+62895322840478</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+      </div>
+    </section>
+    <!-- Section: Links  -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgb(26, 24, 24);">
+      ©SIBimbamCopyright2023
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+
+
+  <!-- Javascript Open -->
+  <!-- Boostrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Javascript Internal -->
+  <script src="{%static '/js/main.js'%}"></script>
+
+  <!-- Javascript Close -->
+</body>
+
+</html>

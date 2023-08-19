@@ -1,0 +1,84 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Boxicons CSS -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{% static '/css/admin.css'%}">
+  <link rel="stylesheet" href="{% static '/css/responsive.css'%}">
+
+  <!-- Icons -->
+  <link rel="icon" href="{% static '/img/loggg.png'%}">
+
+  <!-- Judul -->
+  <title>SI-BIMBAM</title>
+</head>
+
+<body class="login-admin">
+  <div class="container">
+    <!-- Outer Row -->
+    <div class="card o-hidden border-0 shadow-lg justify-content-center">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="p-5">
+              <div class="text-center">
+                <img src="{% static '/img/loggg.png'%}" class="imglog1">
+                <h1 class="h4 text-uppercase mb-4">Login Admin</h1>
+              </div>
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                  {{message}}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+              <form method="POST" class="user" action="{% url 'loginadmin' %}">
+                {% csrf_token %}  
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="name" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Javascript Open -->
+  <!-- Boostrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Javascript Internal -->
+  <script src="{% static '/js/main.js' %}"></script>
+
+  <!-- Javascript Close -->
+</body>
+
+</html>

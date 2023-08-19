@@ -1,0 +1,203 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Boxicons CSS -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- boostrap icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{%static '/css/style.css'%}">
+  <link rel="stylesheet" href="{%static '/css/responsive.css'%}">
+
+  <!-- Icons -->
+  <link rel="icon" href="{%static '/img/loggg.png'%}">
+
+  <!-- Judul -->
+  <title>SI-BIMBAM</title>
+</head>
+
+<body class="buatpass">
+  <!-- Navbar Open -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-navbar nav-back">
+    <div class="container">
+      <h2>
+        <a href="/pendaftaran/daftar"><i class='bx bx-arrow-back' style='color:#eb268f'></i></a>
+        Buat Password
+      </h2>
+    </div>
+  </nav>
+  <!-- Navbar CLose -->
+  <!-- form -->
+  <div class="container-fluid">
+    <div class="form-body">
+      <div class="container-lg form-content">
+        <h2 class="text-uppercase mb-3 mt-3 text-center">Buat Password</h2>
+        <form>
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class='bx bxs-lock-alt'></i></span>
+            <input type="password" class="form-control" id="password" required>
+            <div class="show-hide">
+              <img src="{%static '/img/svg/eye-slash-fill.svg'%}" id="eyeicon" style="cursor: pointer;">
+            </div>
+            <script>
+              let eyeicon = document.getElementById("eyeicon")
+              let password = document.getElementById("password")
+
+              eyeicon.onclick = function () {
+                if (password.type == "password") {
+                  password.type = "text";
+                  eyeicon.src = "{%static '/img/svg/eye-fill.svg'%}";
+                } else {
+                  password.type = "password";
+                  eyeicon.src = "{%static '/img/svg/eye-slash-fill.svg'%}";
+                }
+              }
+            </script>
+          </div>
+          <label for="exampleInputPassword1" class="form-label">Konfirmasi Password</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class='bx bxs-lock-alt'></i></span>
+            <input type="password" class="form-control" id="password1" required>
+            <div class="show-hide">
+              <img src="{%static '/img/svg/eye-slash-fill.svg'%}" id="eyeicon1" style="cursor: pointer;">
+            </div>
+            <script>
+              let eyeicon1 = document.getElementById("eyeicon1")
+              let password1 = document.getElementById("password1")
+
+              eyeicon1.onclick = function () {
+                if (password1.type == "password") {
+                  password1.type = "text";
+                  eyeicon1.src = "{%static '/img/svg/eye-fill.svg'%}";
+                } else {
+                  password1.type = "password";
+                  eyeicon1.src = "{%static '/img/svg/eye-slash-fill.svg'%}";
+                }
+              }
+            </script>
+          </div>
+          <button type="submit" class="btn btn-primary">Buat</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Open -->
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-footer">
+    <!-- Section: Links  -->
+    <section class="p-1 ">
+      <div class="container-fluid text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-3 text-white">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <img src="{%static '/img/loggg.png'%}" style="height: 40px; width:40px">SI-BIMBAM
+            </h6>
+            <p>
+              Here you can use rows and columns to organize your footer content. Lorem ipsum
+              dolor sit amet, consectetur adipisicing elit.
+            </p>
+            <div>
+              <ul>
+                <a href="" class="me-4 text-reset">
+                  <i class='bx bxl-facebook-circle'></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class='bx bxl-twitter'></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class='bx bxl-instagram-alt'></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class='bx bxl-whatsapp'></i>
+                </a>
+              </ul>
+            </div>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4 text-white">
+              Layanan
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Materi Pembelajaran</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Tingkat Level</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Cara Daftar</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Daftar Sekarang</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-md-0 mb-4 text-white">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class='bx bxs-home'></i> Cinangsi, Subang, Jawa Barat</p>
+            <p>
+              <i class='bx bxs-envelope'></i>
+              info@example.com
+            </p>
+            <p><i class='bx bxs-phone'></i>+ 01 234 567 88</p>
+            <p><i class='bx bxs-phone'></i> + 01 234 567 89</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgb(26, 24, 24);">
+      ©SIBimbamCopyright2023
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+  <!-- Footer Close -->
+
+
+  <!-- Javascript Open -->
+  <!-- Boostrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Javascript Internal -->
+  <script src="{%static '/js/main.js'%}"></script>
+
+
+  <!-- Javascript Close -->
+</body>
+
+</html>

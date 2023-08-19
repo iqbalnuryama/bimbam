@@ -1,0 +1,167 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{%static '/css/cssadmin/dataTables.bootstrap5.min.css'%}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="{%static '/css/admin.css'%}" />
+
+  <!-- Boxicons CSS -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+  <!-- Icons -->
+  <link rel="icon" href="{%static '/img/loggg.png'%}">
+  <title>Guruku-BIMBAM</title>
+</head>
+
+<body class="admin">
+  <!-- top navigation bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-admin fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="/admin"><img
+          src="{%static '/img/loggg.png'%}" class="mb-1" style="height: 30px; width:30px;">
+        SELAMAT DATANG, <span>{{request.user.username}}</span></a>
+      <div class="collapse navbar-collapse" id="topNavBar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-person-fill"></i>
+              Guruku
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Logout
+              </a>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- top navigation bar -->
+  <!-- offcanvas -->
+  <div class="offcanvas offcanvas-start sidebar-nav" tabindex="-1" id="sidebar">
+    <div class="offcanvas-body p-0">
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li>
+          <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+            upload
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="{%url 'guruku'%}" class="nav-link dropdown-toggle px-3 " role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span class="me-2"><i class="bi bi-book-fill"></i></span>
+            <span>Materi Pembelajaran</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item " href="{% url 'guruku' %}">
+                <span class="me-2"><i class="bi bi-film"></i></span>
+                <span>Via Video</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'materi_modul' %}">
+                <span class="me-2"><i class="bi bi-easel-fill"></i></span>
+                <span>Via Modul</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="{%url 'upload_berita'%}" class="nav-link px-3 active">
+            <span class="me-2"><i class="bi bi-newspaper"></i></span>
+            <span>Berita</span>
+          </a>
+        </li>
+        <li>
+          <a href="{%url 'upload_kegiatan'%}" class="nav-link px-3 ">
+            <span class="me-2"><i class="bi bi-calendar2-event-fill"></i></span>
+            <span>Kegiatan</span>
+          </a>
+        </li>
+        <li>
+          <a href="{%url 'pengetesan'%}" class="nav-link px-3 ">
+            <span class="me-2"><i class="bi bi-easel-fill"></i></span>
+            <span>Kelola Pengetesan</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle px-3 " role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="me-2"><i class="bi bi-bookmarks-fill"></i></span>
+            <span>Pengajuan Tingkat</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item " href="{% url 'pengajuan_menghitung' %}">
+                <span class="me-2"><i class="bi bi-book-half"></i></span>
+                <span>Pengajuan Materi Menghitung</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item " href="{% url 'pengajuan_membaca' %}">
+                <span class="me-2"><i class="bi bi-book-half"></i></span>
+                <span>Pengajuan Materi Membaca</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'pengajuan_menulis' %}">
+                <span class="me-2"><i class="bi bi-book-half"></i></span>
+                <span>Pengajuan Materi Menulis</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    </div>
+  </div>
+  <!-- offcanvas -->
+  <main class="mt-5 pt-3">
+    <div class="container-fluid">
+      <div class="row">
+        <h3 class="text-uppercase mt-3 text-center">upload berita</h3>
+        <div class="form">
+          <form method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            <div class="mb-3">
+              <label for="judul" class="form-label">Judul</label>
+              <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan disini">
+            </div>
+            <div class="mb-3">
+              <label for="deskripsi" class="form-label">Deskripsi</label>
+              <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan disini">
+            </div>
+            <div class="mb-3">
+              <label for="berita" class="form-label">Foto</label>
+              <input class="form-control" type="file" name="berita" id="formFile">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+  <script src="{%static '/js/jsadmin/jquery-3.5.1.js'%}"></script>
+  <script src="{%static '/js/jsadmin/jquery.dataTables.min.js'%}"></script>
+  <script src="{%static '/js/jsadmin/dataTables.bootstrap5.min.js'%}"></script>
+  <script src="{%static '/js/jsadmin/script.js'%}"></script>
+</body>
+
+</html>
